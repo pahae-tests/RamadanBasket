@@ -29,19 +29,29 @@ function MemberChips({ members }) {
 function FamilyRow({ family, beneficiary }) {
   return (
     <li>
-      <Link href={`/families/${family.id}`} className="group grid items-center gap-x-6 gap-y-3 px-6 py-4 transition hover:bg-brand-50/60 focus-visible:bg-brand-50 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,2.4fr)_minmax(0,1.6fr)_auto]">
+      <Link
+        href={`/families/${family.id}`}
+        className="
+          group grid grid-cols-1 gap-x-6 gap-y-3
+          px-4 py-4 transition
+          hover:bg-brand-50/60
+          focus-visible:bg-brand-50
+          sm:grid-cols-2 sm:px-6
+          xl:grid-cols-[minmax(160px,1fr)_minmax(220px,1.1fr)_minmax(280px,1.5fr)_auto]
+          xl:items-center
+          xl:gap-y-2
+        "
+      >
         <span className="flex min-w-0 items-center gap-3.5">
           <Avatar name={family.representativeName} size="lg" />
           <span className="min-w-0">
             <span className="block truncate text-base font-bold text-brand-950">{family.representativeName || "Sans responsable"}</span>
-            <span className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-stone-500">
-              <span className="font-mono">{family.representativeCin || "CIN manquant"}</span>
+            <span className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-stone-500">{family.representativeCin || "CIN manquant"}</span>
               {family.phone && (
-                <span className="inline-flex items-center gap-1 tabular-nums">
+                <span className="inline-flex items-center gap-1 tabular-nums mt-0.5 flex-wrap text-xs text-stone-500">
                   <Phone className="h-3 w-3" aria-hidden="true" /> {family.phone}
                 </span>
               )}
-            </span>
           </span>
         </span>
         <span className="min-w-0">
@@ -128,7 +138,7 @@ export default function Families() {
     if (typeof id === "string" && /^\d+$/.test(id)) {
       api(`/api/sponsors/${id}`)
         .then((s) => setSponsor({ id: Number(id), name: s.fullName }))
-        .catch(() => {});
+        .catch(() => { });
     }
   }, [router.isReady, router.query.sponsorId]);
 
