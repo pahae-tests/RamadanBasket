@@ -21,6 +21,7 @@ export default function App({ Component, pageProps }) {
         <title>Ramadan Basket Manager</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="noindex" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       {isPublic ? (
         <Component {...pageProps} />
